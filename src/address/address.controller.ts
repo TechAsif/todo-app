@@ -4,6 +4,7 @@ import { Address } from './address.entity';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddressResponseDto } from './dto/addressResponseDto';
 import { AddressDto } from './dto/addressDto';
+import { CreateAddressResponseDto } from './dto/createAddressResponseDto';
 
 @Controller('address')
 @ApiTags('Address')
@@ -31,7 +32,7 @@ export class AddressController {
 
   //create Address
   @Post()
-  @ApiResponse({ status: 201, type: AddressResponseDto})
+  @ApiResponse({ status: 201, type: CreateAddressResponseDto})
   @ApiBody({type: AddressDto})
   async create(@Body() address: AddressDto): Promise<Address> {
     return this.addressService.createAddress(address);

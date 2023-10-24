@@ -12,11 +12,11 @@ export class AddressService {
   ) {}
 
   async findAllAddress(): Promise<Address[]> {
-    return this.addressRepository.find();
+    return this.addressRepository.find({relations: ['user']});
   }
 
   async findOneAddress(id: number): Promise<Address> {
-    return this.addressRepository.findOneBy({ id });
+    return this.addressRepository.findOne({where: {id}, relations: ['user']});
   }
 
   async createAddress(address: AddressDto): Promise<Address> {
@@ -25,7 +25,7 @@ export class AddressService {
 
   async updateAddress(id: number, address: AddressDto): Promise<Address> {
     await this.addressRepository.update(id, address);
-    return this.addressRepository.findOneBy( { id } );
+    return this.addressRepository.findOne({where: {id}, relations: ['user']});
   }
 
   async delete(id: number): Promise<void> {
