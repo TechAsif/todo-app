@@ -15,6 +15,9 @@ export class Address {
     @Column()
     public country: string;
 
+    @Column()
+    public userId: number;
+
     @OneToOne(() => User, user => user.address, {onDelete: 'CASCADE'})
     @JoinColumn()
     user: User;
