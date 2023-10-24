@@ -4,6 +4,8 @@ import { User } from './user.entity';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserDto } from './dto/userDto';
 import { UserResponseDto } from './dto/userResponseDto';
+import { UserResponseDtoInternal } from './dto/UserResponseDtoInternal';
+import { CreateUserResponseDto } from './dto/createUserResponseDto';
 
 @Controller('users')
 @ApiTags('Users')
@@ -12,14 +14,14 @@ export class UsersController {
 
   //get all users
   @Get()
-  @ApiResponse({ status: 200, type: [UserResponseDto]})
+  @ApiResponse({ status: 200, type: [UserResponseDtoInternal]})
   async findAll(): Promise<User[]> {
     return this.usersService.findAllUser();
   }
 
   //get user by id
   @Get(':id')
-  @ApiResponse({ status: 200, type: UserResponseDto})
+  @ApiResponse({ status: 200, type: UserResponseDtoInternal})
   async findOne(@Param('id') id: number): Promise<User> {
     const user = await this.usersService.findOneUser(id);
     if (!user) {
@@ -31,7 +33,7 @@ export class UsersController {
 
   //create user
   @Post()
-  @ApiResponse({ status: 201, type: UserResponseDto})
+  @ApiResponse({ status: 201, type: CreateUserResponseDto})
   @ApiBody({type: UserDto})
   async create(@Body() user: UserDto): Promise<User> {
     return this.usersService.createUser(user);
@@ -39,7 +41,7 @@ export class UsersController {
 
   //update user
   @Put(':id')
-  @ApiResponse({ status: 200, type: UserResponseDto})
+  @ApiResponse({ status: 200, type: UserResponseDtoInternal})
   async update (@Param('id') id: number, @Body() user: UserDto): Promise<User> {
     return this.usersService.updateUser(id, user);
   }

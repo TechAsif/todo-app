@@ -12,11 +12,11 @@ export class UsersService {
   ) {}
 
   async findAllUser(): Promise<User[]> {
-    return this.userRepository.find();
+    return this.userRepository.find({relations: ['address','todos']});
   }
 
   async findOneUser(id: number): Promise<User> {
-    return this.userRepository.findOneBy({ id });
+    return this.userRepository.findOne({where: {id}, relations: ['address','todos']});
   }
 
   async createUser(user: UserDto): Promise<User> {
@@ -25,7 +25,7 @@ export class UsersService {
 
   async updateUser(id: number, user: UserDto): Promise<User> {
     await this.userRepository.update(id, user);
-    return this.userRepository.findOneBy( { id } );
+    return this.userRepository.findOne({where: {id}, relations: ['address','todos']});
   }
 
   async delete(id: number): Promise<void> {
