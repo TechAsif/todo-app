@@ -26,6 +26,6 @@ To run this project on your local machine, follow the steps below:
    ```bash
    docker-compose up --build
 
-   This command will set up two containers: one for the NestJS application and one for the PostgreSQL database.
+This command will set up two containers: one for the NestJS application and one for the PostgreSQL database.
 
 4. Once the containers are running, the NestJS application should be accessible at http://localhost:3000.    You can use a web browser or API client (e.g., Postman) to interact with the API.
