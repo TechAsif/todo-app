@@ -4,6 +4,7 @@ import { Todo } from './todo.entity';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TodoResponseDto } from './dto/todoResponseDto';
 import { TodoDto } from './dto/todoDto';
+import { CreateTodoResponseDto } from './dto/createTodoResponseDto';
 
 @Controller('todos')
 @ApiTags('Todo')
@@ -31,7 +32,7 @@ export class TodoController {
 
   //create Todo
   @Post()
-  @ApiResponse({ status: 201, type: TodoResponseDto})
+  @ApiResponse({ status: 201, type: CreateTodoResponseDto})
   @ApiBody({type: TodoDto})
   async create(@Body() todo: TodoDto): Promise<Todo> {
     return this.todoService.createTodo(todo);

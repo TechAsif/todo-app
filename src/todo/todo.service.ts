@@ -12,11 +12,11 @@ export class TodoService {
   ) {}
 
   async findAllTodo(): Promise<Todo[]> {
-    return this.todoRepository.find();
+    return this.todoRepository.find({relations: ['user']});
   }
 
   async findOneTodo(id: number): Promise<Todo> {
-    return this.todoRepository.findOneBy({ id });
+    return this.todoRepository.findOne({where: {id}, relations: ['user']});
   }
 
   async createTodo(todo: TodoDto): Promise<Todo> {
@@ -25,7 +25,7 @@ export class TodoService {
 
   async updateTodo(id: number, todo: TodoDto): Promise<Todo> {
     await this.todoRepository.update(id, todo);
-    return this.todoRepository.findOneBy( { id } );
+    return this.todoRepository.findOne({where: {id}, relations: ['user']});
   }
 
   async delete(id: number): Promise<void> {
