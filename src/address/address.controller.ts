@@ -40,7 +40,7 @@ export class AddressController {
   //update address
   @Put(':id')
   @ApiResponse({ status: 200, type: AddressResponseDto})
-  async update (@Param('id') id: number, @Body() address: Address): Promise<any> {
+  async update (@Param('id') id: number, @Body() address: AddressDto): Promise<Address> {
     return this.addressService.updateAddress(id, address);
   }
 

@@ -23,7 +23,7 @@ export class AddressService {
     return this.addressRepository.save(address);
   }
 
-  async updateAddress(id: number, address: Address): Promise<Address> {
+  async updateAddress(id: number, address: AddressDto): Promise<Address> {
     await this.addressRepository.update(id, address);
     return this.addressRepository.findOneBy( { id } );
   }

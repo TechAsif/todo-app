@@ -5,12 +5,14 @@ import { ConfigModule } from '@nestjs/config';
 import { AddressModule } from './address/address.module';
 import { ErrorFilter } from './error/error.filter';
 import { APP_FILTER } from '@nestjs/core';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
       ConfigModule.forRoot(),
       UsersModule,
       AddressModule,
+      TodoModule,
       TypeOrmModule.forRoot({
         type: process.env.DB_TYPE as any,
         host: process.env.PG_HOST,
